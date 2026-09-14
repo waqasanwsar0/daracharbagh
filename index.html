@@ -29,7 +29,7 @@
     color: var(--ink);
     font-family: 'Manrope', sans-serif;
     display:flex;
-    align-items:center;
+    align-items:flex-start;
     justify-content:center;
     padding: 24px;
     overflow-x:hidden;
@@ -407,6 +407,7 @@
   function showStep(key){
     Object.values(stepEls).forEach(el => el.classList.remove('active'));
     stepEls[key].classList.add('active');
+    window.scrollTo({ top: 0, left: 0, behavior: 'smooth' });
   }
 
   document.querySelectorAll('.choice-btn').forEach(btn => {
