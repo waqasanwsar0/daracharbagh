@@ -8,16 +8,16 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --bg: #15120c;
-    --bg-deep: #0d0b07;
-    --panel: #1e1911;
-    --panel-line: #362c1a;
-    --gold: #c6a15b;
-    --gold-soft: #8a7042;
-    --gold-bright: #e7c789;
-    --cream: #efe7d8;
-    --muted: #a79a7e;
-    --radius: 2px;
+    --bg: #eaf3ff;
+    --bg-deep: #ffffff;
+    --panel: #ffffff;
+    --panel-line: #d7e6fb;
+    --navy: #0b2a5b;
+    --blue: #1e63e0;
+    --blue-soft: #eef4ff;
+    --blue-bright: #3b7ef5;
+    --ink: #101c33;
+    --muted: #5e6e8c;
   }
 
   * { box-sizing: border-box; }
@@ -26,7 +26,7 @@
     margin:0;
     min-height:100vh;
     background: var(--bg);
-    color: var(--cream);
+    color: var(--ink);
     font-family: 'Manrope', sans-serif;
     display:flex;
     align-items:center;
@@ -44,23 +44,24 @@
     border: 1px solid var(--panel-line);
     overflow:hidden;
     isolation:isolate;
+    box-shadow: 0 30px 60px -30px rgba(11,42,91,0.18);
   }
 
   /* skyline motif */
   .skyline{
     position:absolute;
     left:0; right:0; bottom:0;
-    height: 46%;
+    height: 40%;
     z-index:0;
-    opacity:0.9;
+    opacity:1;
   }
   .skyline svg{ width:100%; height:100%; display:block; }
 
   .glow{
     position:absolute;
-    top:-120px; right:-80px;
-    width:320px; height:320px;
-    background: radial-gradient(circle, rgba(198,161,91,0.20) 0%, rgba(198,161,91,0) 70%);
+    top:-140px; right:-100px;
+    width:360px; height:360px;
+    background: radial-gradient(circle, rgba(30,99,224,0.14) 0%, rgba(30,99,224,0) 70%);
     z-index:0;
   }
 
@@ -80,10 +81,38 @@
     letter-spacing: 0.02em;
     margin-bottom: 18px;
   }
-  .eyebrow b{ color: var(--gold); font-weight:600; }
+  .eyebrow b{ color: var(--blue); font-weight:600; }
 
-  .eyebrow-logo{ margin-bottom: 22px; }
-  .brand-logo{ height: 40px; width: auto; display:block; }
+  .brand-mark{
+    display:flex;
+    align-items:center;
+    gap:12px;
+    margin-bottom: 26px;
+  }
+  .brand-badge{
+    width:44px; height:44px;
+    background: var(--navy);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    flex-shrink:0;
+  }
+  .brand-badge svg{ width:24px; height:24px; }
+  .brand-wordmark{
+    font-family:'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight:700;
+    letter-spacing:0.03em;
+    color: var(--navy);
+    line-height:1.4;
+  }
+  .brand-wordmark span{
+    display:block;
+    font-weight:500;
+    font-size:11px;
+    color: var(--muted);
+  }
+  .brand-logo-img{ display:none; height:40px; width:auto; }
 
   h1{
     font-family:'Fraunces', serif;
@@ -91,11 +120,11 @@
     font-size: 34px;
     line-height:1.15;
     margin: 0 0 14px;
-    color: var(--cream);
+    color: var(--navy);
   }
   h1 em{
     font-style: normal;
-    color: var(--gold-bright);
+    color: var(--blue);
   }
 
   .urdu{
@@ -118,9 +147,9 @@
   }
   .choice-btn{
     flex:1;
-    background: transparent;
+    background: var(--blue-soft);
     border: 1px solid var(--panel-line);
-    color: var(--cream);
+    color: var(--navy);
     font-family:'Fraunces', serif;
     font-size: 26px;
     padding: 20px 8px;
@@ -136,8 +165,8 @@
     letter-spacing:0.03em;
   }
   .choice-btn:hover, .choice-btn:focus-visible{
-    border-color: var(--gold);
-    background: rgba(198,161,91,0.06);
+    border-color: var(--blue);
+    background: #e2edff;
     outline: none;
   }
 
@@ -153,21 +182,21 @@
     background: transparent;
     border:none;
     border-bottom: 1px solid var(--panel-line);
-    color: var(--cream);
+    color: var(--navy);
     font-family:'Fraunces', serif;
     font-size:24px;
     padding: 10px 2px 14px;
     outline:none;
     transition: border-color 0.25s ease;
   }
-  input[type=text]:focus{ border-color: var(--gold); }
-  input[type=text]::placeholder{ color: #4a4130; }
+  input[type=text]:focus{ border-color: var(--blue); }
+  input[type=text]::placeholder{ color: #a9bcdd; }
 
   .primary-btn{
     margin-top: 26px;
     width:100%;
-    background: var(--gold);
-    color: var(--bg-deep);
+    background: var(--blue);
+    color: #ffffff;
     border:none;
     font-family:'Manrope', sans-serif;
     font-weight:700;
@@ -177,7 +206,7 @@
     letter-spacing:0.02em;
     transition: background 0.25s ease, transform 0.15s ease;
   }
-  .primary-btn:hover{ background: var(--gold-bright); }
+  .primary-btn:hover{ background: var(--navy); }
   .primary-btn:disabled{ background: var(--panel-line); color:var(--muted); cursor:not-allowed; }
 
   .back-link{
@@ -185,14 +214,14 @@
     font-size:12px; cursor:pointer; margin-top:14px;
     align-self:flex-start; padding:0;
   }
-  .back-link:hover{ color: var(--gold); }
+  .back-link:hover{ color: var(--blue); }
 
   /* loading step */
   #step-loading{ align-items:center; justify-content:center; text-align:center; }
   .loader{
     width:46px; height:46px;
     border: 1px solid var(--panel-line);
-    border-top-color: var(--gold);
+    border-top-color: var(--blue);
     border-radius:50%;
     animation: spin 0.9s linear infinite;
     margin-bottom: 22px;
@@ -224,13 +253,13 @@
     flex:1;
     background:transparent;
     border:1px solid var(--panel-line);
-    color:var(--cream);
+    color:var(--navy);
     font-family:'Manrope', sans-serif;
     font-size:13px;
     padding:14px 10px;
     cursor:pointer;
   }
-  .ghost-btn:hover{ border-color: var(--gold); }
+  .ghost-btn:hover{ border-color: var(--blue); }
 
   @media (max-width:420px){
     h1{ font-size:28px; }
@@ -244,9 +273,7 @@
   <div class="glow"></div>
   <div class="skyline" aria-hidden="true">
     <svg viewBox="0 0 460 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
-      <rect x="0" y="0" width="460" height="280" fill="none"/>
-      <!-- back row -->
-      <g fill="#221c12">
+      <g fill="#dce9fb">
         <rect x="10" y="120" width="46" height="160"/>
         <rect x="66" y="90" width="34" height="190"/>
         <rect x="112" y="140" width="50" height="140"/>
@@ -257,8 +284,7 @@
         <rect x="386" y="95" width="32" height="185"/>
         <rect x="428" y="150" width="30" height="130"/>
       </g>
-      <!-- front row -->
-      <g fill="#161209">
+      <g fill="#c3d9f6">
         <rect x="-10" y="175" width="60" height="105"/>
         <rect x="46" y="150" width="40" height="130"/>
         <rect x="96" y="190" width="58" height="90"/>
@@ -269,8 +295,7 @@
         <rect x="376" y="155" width="34" height="125"/>
         <rect x="416" y="185" width="44" height="95"/>
       </g>
-      <!-- gold windows -->
-      <g fill="#c6a15b" opacity="0.55">
+      <g fill="#1e63e0" opacity="0.45">
         <rect x="20" y="140" width="4" height="6"/><rect x="30" y="140" width="4" height="6"/>
         <rect x="20" y="160" width="4" height="6"/><rect x="30" y="160" width="4" height="6"/>
         <rect x="20" y="190" width="4" height="6"/><rect x="30" y="200" width="4" height="6"/>
@@ -297,8 +322,13 @@
 
     <!-- STEP 1: question -->
     <div class="step active" id="step-1">
-      <div class="eyebrow-logo">
-        <img src="https://ruda.gov.pk/system/files/Dara%20Chahar%20Bagh.png" alt="Dara Chahar Bagh" class="brand-logo">
+      <div class="brand-mark">
+        <div class="brand-badge">
+          <svg viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <path d="M4 20V11L12 5L20 11V20H15V14H9V20H4Z" fill="white"/>
+          </svg>
+        </div>
+        <div class="brand-wordmark">DARA CHAHAR BAGH<span>RUDA, Lahore Ring Road</span></div>
       </div>
       <h1>Aap kahan honge, <em>Dara Chahar Bagh</em> mein?</h1>
       <p class="urdu">وقت گزرتا رہتا ہے۔ سوال یہ ہے کہ جب وہ سال آئے گا، آپ کہاں کھڑے ہوں گے؟</p>
@@ -329,7 +359,7 @@
 
   </div>
 
-  <!-- STEP 4: result (own layout, full width canvas) -->
+  <!-- STEP 4: result -->
   <div class="step" id="step-result" style="position:relative; z-index:2;">
     <div class="result-inner">
       <canvas id="card-canvas" width="800" height="1000"></canvas>
@@ -405,27 +435,15 @@
   });
 
   // ---- LEAD CAPTURE ----
-  // Yahan aap apna backend / Google Sheet / CRM webhook call kar saktay hain.
-  // Har generate click par ek lead create ho rahi hai (naam + chosen year).
   function captureLead(name, year){
     console.log('LEAD CAPTURED:', { name, year, ts: new Date().toISOString() });
-    // Example:
-    // fetch('https://YOUR-ENDPOINT/leads', {
-    //   method: 'POST',
-    //   headers: {'Content-Type':'application/json'},
-    //   body: JSON.stringify({ name, year })
-    // });
+    // fetch('https://YOUR-ENDPOINT/leads', { method:'POST', headers:{'Content-Type':'application/json'}, body: JSON.stringify({name, year}) });
   }
 
   document.getElementById('cta-btn').addEventListener('click', () => {
     captureLead(userName, chosenYear);
-    // WhatsApp number yahan replace karein
     window.open('https://wa.me/923000000000?text=' + encodeURIComponent('Hi, mera naam ' + userName + ' hai. Main Dara Chahar Bagh mein apna ' + chosenYear + ' wala ghar dekhna chahta/chahti hoon.'), '_blank');
   });
-
-  // Client ka Facebook page — CTA ko WhatsApp ki bajaye is par bhejna ho to
-  // upar wali line comment kar ke neeche wali use kar lein:
-  // window.open('https://www.facebook.com/DaraChaharbagh/', '_blank');
 
   // ---- CANVAS: build the shareable card ----
   function drawCard(){
@@ -435,88 +453,104 @@
     const ctx = canvas.getContext('2d');
     const W = canvas.width, H = canvas.height;
 
-    // background
+    // background — soft blue to white
     const bg = ctx.createLinearGradient(0,0,0,H);
-    bg.addColorStop(0, '#1b160e');
-    bg.addColorStop(1, '#0d0b07');
+    bg.addColorStop(0, '#f3f8ff');
+    bg.addColorStop(1, '#ffffff');
     ctx.fillStyle = bg;
     ctx.fillRect(0,0,W,H);
 
-    // gold glow, top right
-    const glow = ctx.createRadialGradient(W*0.85, H*0.12, 10, W*0.85, H*0.12, 380);
-    glow.addColorStop(0, 'rgba(198,161,91,0.22)');
-    glow.addColorStop(1, 'rgba(198,161,91,0)');
+    // blue glow, top right
+    const glow = ctx.createRadialGradient(W*0.85, H*0.10, 10, W*0.85, H*0.10, 420);
+    glow.addColorStop(0, 'rgba(30,99,224,0.14)');
+    glow.addColorStop(1, 'rgba(30,99,224,0)');
     ctx.fillStyle = glow;
     ctx.fillRect(0,0,W,H);
 
-    // skyline silhouette (simple procedural buildings)
+    // skyline silhouette
     drawSkyline(ctx, W, H);
 
     // thin border
-    ctx.strokeStyle = 'rgba(198,161,91,0.5)';
-    ctx.lineWidth = 2;
-    ctx.strokeRect(1,1,W-2,H-2);
+    ctx.strokeStyle = 'rgba(30,99,224,0.35)';
+    ctx.lineWidth = 3;
+    ctx.strokeRect(1.5,1.5,W-3,H-3);
 
-    // eyebrow / logo
+    // brand mark: try real logo, else draw a clean badge + wordmark
+    let logoDrawn = false;
     if(logoReady && logoImg){
       try{
         const lw = 150;
         const lh = lw * (logoImg.naturalHeight / logoImg.naturalWidth);
         ctx.drawImage(logoImg, 56, 56, lw, lh);
-      }catch(e){
-        ctx.fillStyle = '#c6a15b';
-        ctx.font = '600 20px Manrope, sans-serif';
-        ctx.fillText('DARA CHAHAR BAGH', 56, 90);
-      }
-    } else {
-      ctx.fillStyle = '#a79a7e';
-      ctx.font = '600 20px Manrope, sans-serif';
-      ctx.fillText('AAP KA ADDRESS', 56, 100);
-      ctx.fillStyle = '#c6a15b';
-      ctx.font = '600 20px Manrope, sans-serif';
-      ctx.fillText(chosenYear, 56, 128);
+        logoDrawn = true;
+      }catch(e){ logoDrawn = false; }
+    }
+    if(!logoDrawn){
+      // navy badge with simple home glyph
+      ctx.fillStyle = '#0b2a5b';
+      ctx.fillRect(56, 56, 56, 56);
+      ctx.fillStyle = '#ffffff';
+      ctx.beginPath();
+      ctx.moveTo(84, 66);
+      ctx.lineTo(102, 80);
+      ctx.lineTo(96, 80);
+      ctx.lineTo(96, 100);
+      ctx.lineTo(86, 100);
+      ctx.lineTo(86, 88);
+      ctx.lineTo(82, 88);
+      ctx.lineTo(82, 100);
+      ctx.lineTo(72, 100);
+      ctx.lineTo(72, 80);
+      ctx.lineTo(66, 80);
+      ctx.closePath();
+      ctx.fill();
+      // wordmark beside badge
+      ctx.fillStyle = '#0b2a5b';
+      ctx.font = '700 20px Manrope, sans-serif';
+      ctx.fillText('DARA CHAHAR BAGH', 128, 82);
+      ctx.fillStyle = '#5e6e8c';
+      ctx.font = '500 16px Manrope, sans-serif';
+      ctx.fillText('RUDA, Lahore Ring Road', 128, 104);
     }
 
     // name — big serif
-    ctx.fillStyle = '#efe7d8';
+    ctx.fillStyle = '#101c33';
     ctx.font = '500 64px Fraunces, serif';
     wrapText(ctx, userName, 56, 220, W - 112, 68);
 
     // message line
-    ctx.fillStyle = '#efe7d8';
+    ctx.fillStyle = '#0b2a5b';
     ctx.font = '400 30px Fraunces, serif';
     const msg = chosenYear + ' mein, Dara Chahar Bagh apka address hoga.';
     wrapText(ctx, msg, 56, H - 210, W - 112, 40);
 
     // bottom rule + tagline
-    ctx.strokeStyle = 'rgba(198,161,91,0.4)';
+    ctx.strokeStyle = 'rgba(30,99,224,0.3)';
     ctx.beginPath();
     ctx.moveTo(56, H - 90);
     ctx.lineTo(W - 56, H - 90);
     ctx.stroke();
 
-    ctx.fillStyle = '#a79a7e';
+    ctx.fillStyle = '#5e6e8c';
     ctx.font = '600 18px Manrope, sans-serif';
     ctx.fillText('DARA CHAHAR BAGH  •  RUDA, LAHORE RING ROAD', 56, H - 55);
   }
 
   function drawSkyline(ctx, W, H){
-    const baseY = H * 0.62;
-    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    const baseY = H * 0.68;
     let x = 0;
     const rand = mulberry32(7);
     while(x < W){
       const w = 40 + rand()*70;
-      const h = 60 + rand()*260;
-      ctx.fillRect(x, baseY + (300 - h), w, h);
-      // windows
-      ctx.fillStyle = 'rgba(198,161,91,0.35)';
-      for(let wy = baseY + (300-h) + 14; wy < baseY + 290; wy += 22){
+      const h = 50 + rand()*220;
+      ctx.fillStyle = '#dce9fb';
+      ctx.fillRect(x, baseY + (260 - h), w, h);
+      ctx.fillStyle = 'rgba(30,99,224,0.30)';
+      for(let wy = baseY + (260-h) + 14; wy < baseY + 250; wy += 22){
         for(let wx = x + 8; wx < x + w - 8; wx += 16){
           if(rand() > 0.5) ctx.fillRect(wx, wy, 6, 8);
         }
       }
-      ctx.fillStyle = 'rgba(255,255,255,0.03)';
       x += w + 6;
     }
   }
@@ -562,7 +596,7 @@
         setTimeout(() => URL.revokeObjectURL(url), 4000);
       }, 'image/png');
     } catch(err){
-      alert('Download abhi block ho raha hai (logo cross-domain se aa raha hai). "Naye Tab Mein Kholein" try karein, ya logo image ko apni website ke usi folder mein save kar ke local path use karein — phir download bhi kaam karega.');
+      alert('Download abhi block ho raha hai. "Naye Tab Mein Kholein" try karein.');
     }
   });
 
@@ -572,12 +606,12 @@
       const dataUrl = canvas.toDataURL('image/png');
       const w = window.open();
       if(w){
-        w.document.write('<title>Aap ka ' + chosenYear + '</title><body style="margin:0;background:#0d0b07;display:flex;align-items:center;justify-content:center;min-height:100vh;"><img src="' + dataUrl + '" style="max-width:100%;height:auto;" alt="Card"></body>');
+        w.document.write('<title>Aap ka ' + chosenYear + '</title><body style="margin:0;background:#eaf3ff;display:flex;align-items:center;justify-content:center;min-height:100vh;"><img src="' + dataUrl + '" style="max-width:100%;height:auto;" alt="Card"></body>');
       } else {
         alert('Popup blocked. Browser settings mein popups allow karein.');
       }
     } catch(err){
-      alert('Logo cross-domain se aa raha hai isliye ye tasveer abhi save nahi ho pa rahi. Website live karte waqt logo image ko isi server pe rakh dena — phir ye masla khud hi theek ho jayega.');
+      alert('Ye tasveer abhi save nahi ho pa rahi. Dobara try karein.');
     }
   });
 </script>
