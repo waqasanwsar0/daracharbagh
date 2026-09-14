@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ur">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dara Chahar Bagh — Aap Ka Address, 2035</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,500;9..144,600&family=Manrope:wght@400;500;600;700&family=Noto+Nastaliq+Urdu:wght@500;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #15120c;
+    --bg-deep: #0d0b07;
+    --panel: #1e1911;
+    --panel-line: #362c1a;
+    --gold: #c6a15b;
+    --gold-soft: #8a7042;
+    --gold-bright: #e7c789;
+    --cream: #efe7d8;
+    --muted: #a79a7e;
+    --radius: 2px;
+  }
+
+  * { box-sizing: border-box; }
+
+  body{
+    margin:0;
+    min-height:100vh;
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 24px;
+    overflow-x:hidden;
+  }
+
+  .stage{
+    position:relative;
+    width:100%;
+    max-width: 460px;
+    min-height: 640px;
+    background: var(--panel);
+    border: 1px solid var(--panel-line);
+    overflow:hidden;
+    isolation:isolate;
+  }
+
+  /* skyline motif */
+  .skyline{
+    position:absolute;
+    left:0; right:0; bottom:0;
+    height: 46%;
+    z-index:0;
+    opacity:0.9;
+  }
+  .skyline svg{ width:100%; height:100%; display:block; }
+
+  .glow{
+    position:absolute;
+    top:-120px; right:-80px;
+    width:320px; height:320px;
+    background: radial-gradient(circle, rgba(198,161,91,0.20) 0%, rgba(198,161,91,0) 70%);
+    z-index:0;
+  }
+
+  .panel-content{
+    position:relative;
+    z-index:2;
+    padding: 44px 32px 36px;
+    display:flex;
+    flex-direction:column;
+    min-height: 640px;
+  }
+
+  .eyebrow{
+    font-family:'Manrope', sans-serif;
+    font-size: 13px;
+    color: var(--muted);
+    letter-spacing: 0.02em;
+    margin-bottom: 18px;
+  }
+  .eyebrow b{ color: var(--gold); font-weight:600; }
+
+  .eyebrow-logo{ margin-bottom: 22px; }
+  .brand-logo{ height: 40px; width: auto; display:block; }
+
+  h1{
+    font-family:'Fraunces', serif;
+    font-weight:500;
+    font-size: 34px;
+    line-height:1.15;
+    margin: 0 0 14px;
+    color: var(--cream);
+  }
+  h1 em{
+    font-style: normal;
+    color: var(--gold-bright);
+  }
+
+  .urdu{
+    font-family:'Noto Nastaliq Urdu', serif;
+    font-size: 19px;
+    line-height:2;
+    color: var(--muted);
+    margin: 0 0 30px;
+    direction: rtl;
+  }
+
+  .step{ display:none; flex-direction:column; flex:1; }
+  .step.active{ display:flex; }
+
+  .choice-row{
+    display:flex;
+    gap:12px;
+    margin-top: auto;
+    padding-top: 24px;
+  }
+  .choice-btn{
+    flex:1;
+    background: transparent;
+    border: 1px solid var(--panel-line);
+    color: var(--cream);
+    font-family:'Fraunces', serif;
+    font-size: 26px;
+    padding: 20px 8px;
+    cursor:pointer;
+    transition: border-color 0.25s ease, background 0.25s ease;
+  }
+  .choice-btn span{
+    display:block;
+    font-family:'Manrope', sans-serif;
+    font-size: 11px;
+    color: var(--muted);
+    margin-top:6px;
+    letter-spacing:0.03em;
+  }
+  .choice-btn:hover, .choice-btn:focus-visible{
+    border-color: var(--gold);
+    background: rgba(198,161,91,0.06);
+    outline: none;
+  }
+
+  .field-wrap{ margin-top:auto; padding-top:24px; }
+  label{
+    display:block;
+    font-size:12px;
+    color: var(--muted);
+    margin-bottom:10px;
+  }
+  input[type=text]{
+    width:100%;
+    background: transparent;
+    border:none;
+    border-bottom: 1px solid var(--panel-line);
+    color: var(--cream);
+    font-family:'Fraunces', serif;
+    font-size:24px;
+    padding: 10px 2px 14px;
+    outline:none;
+    transition: border-color 0.25s ease;
+  }
+  input[type=text]:focus{ border-color: var(--gold); }
+  input[type=text]::placeholder{ color: #4a4130; }
+
+  .primary-btn{
+    margin-top: 26px;
+    width:100%;
+    background: var(--gold);
+    color: var(--bg-deep);
+    border:none;
+    font-family:'Manrope', sans-serif;
+    font-weight:700;
+    font-size:14px;
+    padding: 16px 20px;
+    cursor:pointer;
+    letter-spacing:0.02em;
+    transition: background 0.25s ease, transform 0.15s ease;
+  }
+  .primary-btn:hover{ background: var(--gold-bright); }
+  .primary-btn:disabled{ background: var(--panel-line); color:var(--muted); cursor:not-allowed; }
+
+  .back-link{
+    background:none; border:none; color:var(--muted);
+    font-size:12px; cursor:pointer; margin-top:14px;
+    align-self:flex-start; padding:0;
+  }
+  .back-link:hover{ color: var(--gold); }
+
+  /* loading step */
+  #step-loading{ align-items:center; justify-content:center; text-align:center; }
+  .loader{
+    width:46px; height:46px;
+    border: 1px solid var(--panel-line);
+    border-top-color: var(--gold);
+    border-radius:50%;
+    animation: spin 0.9s linear infinite;
+    margin-bottom: 22px;
+  }
+  @keyframes spin{ to{ transform: rotate(360deg); } }
+  .loading-text{ font-size:13px; color: var(--muted); }
+
+  /* result step */
+  #step-result{ padding:0; }
+  .result-inner{ padding: 44px 32px 32px; display:flex; flex-direction:column; height:100%; }
+  #card-canvas{
+    width:100%;
+    aspect-ratio: 4/5;
+    display:block;
+    border: 1px solid var(--panel-line);
+  }
+  .result-caption{
+    font-size:13px;
+    color: var(--muted);
+    margin: 18px 0 0;
+    line-height:1.6;
+  }
+  .result-actions{
+    display:flex;
+    gap:10px;
+    margin-top:24px;
+  }
+  .ghost-btn{
+    flex:1;
+    background:transparent;
+    border:1px solid var(--panel-line);
+    color:var(--cream);
+    font-family:'Manrope', sans-serif;
+    font-size:13px;
+    padding:14px 10px;
+    cursor:pointer;
+  }
+  .ghost-btn:hover{ border-color: var(--gold); }
+
+  @media (max-width:420px){
+    h1{ font-size:28px; }
+    .panel-content{ padding: 34px 22px 28px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="stage">
+  <div class="glow"></div>
+  <div class="skyline" aria-hidden="true">
+    <svg viewBox="0 0 460 280" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
+      <rect x="0" y="0" width="460" height="280" fill="none"/>
+      <!-- back row -->
+      <g fill="#221c12">
+        <rect x="10" y="120" width="46" height="160"/>
+        <rect x="66" y="90" width="34" height="190"/>
+        <rect x="112" y="140" width="50" height="140"/>
+        <rect x="176" y="70" width="30" height="210"/>
+        <rect x="220" y="110" width="44" height="170"/>
+        <rect x="278" y="60" width="36" height="220"/>
+        <rect x="326" y="130" width="48" height="150"/>
+        <rect x="386" y="95" width="32" height="185"/>
+        <rect x="428" y="150" width="30" height="130"/>
+      </g>
+      <!-- front row -->
+      <g fill="#161209">
+        <rect x="-10" y="175" width="60" height="105"/>
+        <rect x="46" y="150" width="40" height="130"/>
+        <rect x="96" y="190" width="58" height="90"/>
+        <rect x="160" y="160" width="36" height="120"/>
+        <rect x="206" y="200" width="52" height="80"/>
+        <rect x="264" y="170" width="38" height="110"/>
+        <rect x="312" y="195" width="56" height="85"/>
+        <rect x="376" y="155" width="34" height="125"/>
+        <rect x="416" y="185" width="44" height="95"/>
+      </g>
+      <!-- gold windows -->
+      <g fill="#c6a15b" opacity="0.55">
+        <rect x="20" y="140" width="4" height="6"/><rect x="30" y="140" width="4" height="6"/>
+        <rect x="20" y="160" width="4" height="6"/><rect x="30" y="160" width="4" height="6"/>
+        <rect x="20" y="190" width="4" height="6"/><rect x="30" y="200" width="4" height="6"/>
+        <rect x="75" y="105" width="4" height="6"/><rect x="85" y="120" width="4" height="6"/>
+        <rect x="75" y="140" width="4" height="6"/><rect x="85" y="165" width="4" height="6"/>
+        <rect x="123" y="160" width="4" height="6"/><rect x="135" y="175" width="4" height="6"/>
+        <rect x="123" y="210" width="4" height="6"/><rect x="145" y="220" width="4" height="6"/>
+        <rect x="185" y="90" width="4" height="6"/><rect x="195" y="110" width="4" height="6"/>
+        <rect x="185" y="140" width="4" height="6"/><rect x="195" y="175" width="4" height="6"/>
+        <rect x="230" y="130" width="4" height="6"/><rect x="245" y="150" width="4" height="6"/>
+        <rect x="230" y="220" width="4" height="6"/><rect x="245" y="230" width="4" height="6"/>
+        <rect x="290" y="80" width="4" height="6"/><rect x="300" y="100" width="4" height="6"/>
+        <rect x="290" y="130" width="4" height="6"/><rect x="220" y="240" width="4" height="6"/>
+        <rect x="336" y="150" width="4" height="6"/><rect x="350" y="170" width="4" height="6"/>
+        <rect x="336" y="210" width="4" height="6"/><rect x="360" y="225" width="4" height="6"/>
+        <rect x="395" y="115" width="4" height="6"/><rect x="405" y="135" width="4" height="6"/>
+        <rect x="325" y="220" width="4" height="6"/><rect x="405" y="170" width="4" height="6"/>
+        <rect x="435" y="170" width="4" height="6"/><rect x="445" y="190" width="4" height="6"/>
+      </g>
+    </svg>
+  </div>
+
+  <div class="panel-content">
+
+    <!-- STEP 1: question -->
+    <div class="step active" id="step-1">
+      <div class="eyebrow-logo">
+        <img src="https://ruda.gov.pk/system/files/Dara%20Chahar%20Bagh.png" alt="Dara Chahar Bagh" class="brand-logo">
+      </div>
+      <h1>Aap kahan honge, <em>Dara Chahar Bagh</em> mein?</h1>
+      <p class="urdu">وقت گزرتا رہتا ہے۔ سوال یہ ہے کہ جب وہ سال آئے گا، آپ کہاں کھڑے ہوں گے؟</p>
+      <div class="choice-row">
+        <button class="choice-btn" data-year="2030">2030<span>PEHLI MANZIL</span></button>
+        <button class="choice-btn" data-year="2035">2035<span>APNA GHAR</span></button>
+      </div>
+    </div>
+
+    <!-- STEP 2: name -->
+    <div class="step" id="step-2">
+      <div class="eyebrow">Aapka intekhaab: <b id="year-echo">2035</b></div>
+      <h1>Iss tasveer mein, <em>aap ka naam</em> hoga.</h1>
+      <p class="urdu">ذرا اپنا نام بتائیں — ہم آپ کے لیے ایک ذاتی جھلک تیار کرتے ہیں۔</p>
+      <div class="field-wrap">
+        <label for="name-input">Aap ka naam</label>
+        <input type="text" id="name-input" placeholder="مثلاً احمد رضا" autocomplete="off">
+        <button class="primary-btn" id="generate-btn" disabled>Meri Tasveer Banayein</button>
+        <button class="back-link" id="back-to-1">‹ Wapas</button>
+      </div>
+    </div>
+
+    <!-- STEP 3: loading -->
+    <div class="step" id="step-loading">
+      <div class="loader"></div>
+      <div class="loading-text">Aap ka 2035 tayyar kiya ja raha hai…</div>
+    </div>
+
+  </div>
+
+  <!-- STEP 4: result (own layout, full width canvas) -->
+  <div class="step" id="step-result" style="position:relative; z-index:2;">
+    <div class="result-inner">
+      <canvas id="card-canvas" width="800" height="1000"></canvas>
+      <p class="result-caption">Yeh sirf shuruaat hai. Dara Chahar Bagh mein aap ka asal ghar taiyar hai — ek muft consultation book karein aur apna 2035 aaj shuru karein.</p>
+      <div class="result-actions">
+        <button class="ghost-btn" id="download-btn">Download</button>
+        <button class="ghost-btn" id="open-btn">Naye Tab Mein Kholein</button>
+      </div>
+      <button class="ghost-btn" id="restart-btn" style="margin-top:10px;">Dobara Banayein</button>
+      <button class="primary-btn" id="cta-btn" style="margin-top:14px;">Muft Consultation Book Karein</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  const stepEls = {
+    1: document.getElementById('step-1'),
+    2: document.getElementById('step-2'),
+    loading: document.getElementById('step-loading'),
+    result: document.getElementById('step-result'),
+  };
+  let chosenYear = '2035';
+  let userName = '';
+  let logoImg = null;
+  let logoReady = false;
+
+  (function preloadLogo(){
+    const img = new Image();
+    img.crossOrigin = 'anonymous';
+    img.onload = () => { logoImg = img; logoReady = true; };
+    img.onerror = () => { logoReady = false; };
+    img.src = 'https://ruda.gov.pk/system/files/Dara%20Chahar%20Bagh.png';
+  })();
+
+  function showStep(key){
+    Object.values(stepEls).forEach(el => el.classList.remove('active'));
+    stepEls[key].classList.add('active');
+  }
+
+  document.querySelectorAll('.choice-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      chosenYear = btn.dataset.year;
+      document.getElementById('year-echo').textContent = chosenYear;
+      showStep(2);
+    });
+  });
+
+  document.getElementById('back-to-1').addEventListener('click', () => showStep(1));
+
+  const nameInput = document.getElementById('name-input');
+  const generateBtn = document.getElementById('generate-btn');
+  nameInput.addEventListener('input', () => {
+    generateBtn.disabled = nameInput.value.trim().length === 0;
+  });
+  nameInput.addEventListener('keydown', (e) => {
+    if(e.key === 'Enter' && !generateBtn.disabled) generateBtn.click();
+  });
+
+  generateBtn.addEventListener('click', () => {
+    userName = nameInput.value.trim();
+    showStep('loading');
+    setTimeout(() => {
+      drawCard();
+      showStep('result');
+    }, 1400);
+  });
+
+  document.getElementById('restart-btn').addEventListener('click', () => {
+    nameInput.value = '';
+    generateBtn.disabled = true;
+    showStep(1);
+  });
+
+  // ---- LEAD CAPTURE ----
+  // Yahan aap apna backend / Google Sheet / CRM webhook call kar saktay hain.
+  // Har generate click par ek lead create ho rahi hai (naam + chosen year).
+  function captureLead(name, year){
+    console.log('LEAD CAPTURED:', { name, year, ts: new Date().toISOString() });
+    // Example:
+    // fetch('https://YOUR-ENDPOINT/leads', {
+    //   method: 'POST',
+    //   headers: {'Content-Type':'application/json'},
+    //   body: JSON.stringify({ name, year })
+    // });
+  }
+
+  document.getElementById('cta-btn').addEventListener('click', () => {
+    captureLead(userName, chosenYear);
+    // WhatsApp number yahan replace karein
+    window.open('https://wa.me/923000000000?text=' + encodeURIComponent('Hi, mera naam ' + userName + ' hai. Main Dara Chahar Bagh mein apna ' + chosenYear + ' wala ghar dekhna chahta/chahti hoon.'), '_blank');
+  });
+
+  // Client ka Facebook page — CTA ko WhatsApp ki bajaye is par bhejna ho to
+  // upar wali line comment kar ke neeche wali use kar lein:
+  // window.open('https://www.facebook.com/DaraChaharbagh/', '_blank');
+
+  // ---- CANVAS: build the shareable card ----
+  function drawCard(){
+    captureLead(userName, chosenYear);
+
+    const canvas = document.getElementById('card-canvas');
+    const ctx = canvas.getContext('2d');
+    const W = canvas.width, H = canvas.height;
+
+    // background
+    const bg = ctx.createLinearGradient(0,0,0,H);
+    bg.addColorStop(0, '#1b160e');
+    bg.addColorStop(1, '#0d0b07');
+    ctx.fillStyle = bg;
+    ctx.fillRect(0,0,W,H);
+
+    // gold glow, top right
+    const glow = ctx.createRadialGradient(W*0.85, H*0.12, 10, W*0.85, H*0.12, 380);
+    glow.addColorStop(0, 'rgba(198,161,91,0.22)');
+    glow.addColorStop(1, 'rgba(198,161,91,0)');
+    ctx.fillStyle = glow;
+    ctx.fillRect(0,0,W,H);
+
+    // skyline silhouette (simple procedural buildings)
+    drawSkyline(ctx, W, H);
+
+    // thin border
+    ctx.strokeStyle = 'rgba(198,161,91,0.5)';
+    ctx.lineWidth = 2;
+    ctx.strokeRect(1,1,W-2,H-2);
+
+    // eyebrow / logo
+    if(logoReady && logoImg){
+      try{
+        const lw = 150;
+        const lh = lw * (logoImg.naturalHeight / logoImg.naturalWidth);
+        ctx.drawImage(logoImg, 56, 56, lw, lh);
+      }catch(e){
+        ctx.fillStyle = '#c6a15b';
+        ctx.font = '600 20px Manrope, sans-serif';
+        ctx.fillText('DARA CHAHAR BAGH', 56, 90);
+      }
+    } else {
+      ctx.fillStyle = '#a79a7e';
+      ctx.font = '600 20px Manrope, sans-serif';
+      ctx.fillText('AAP KA ADDRESS', 56, 100);
+      ctx.fillStyle = '#c6a15b';
+      ctx.font = '600 20px Manrope, sans-serif';
+      ctx.fillText(chosenYear, 56, 128);
+    }
+
+    // name — big serif
+    ctx.fillStyle = '#efe7d8';
+    ctx.font = '500 64px Fraunces, serif';
+    wrapText(ctx, userName, 56, 220, W - 112, 68);
+
+    // message line
+    ctx.fillStyle = '#efe7d8';
+    ctx.font = '400 30px Fraunces, serif';
+    const msg = chosenYear + ' mein, Dara Chahar Bagh apka address hoga.';
+    wrapText(ctx, msg, 56, H - 210, W - 112, 40);
+
+    // bottom rule + tagline
+    ctx.strokeStyle = 'rgba(198,161,91,0.4)';
+    ctx.beginPath();
+    ctx.moveTo(56, H - 90);
+    ctx.lineTo(W - 56, H - 90);
+    ctx.stroke();
+
+    ctx.fillStyle = '#a79a7e';
+    ctx.font = '600 18px Manrope, sans-serif';
+    ctx.fillText('DARA CHAHAR BAGH  •  RUDA, LAHORE RING ROAD', 56, H - 55);
+  }
+
+  function drawSkyline(ctx, W, H){
+    const baseY = H * 0.62;
+    ctx.fillStyle = 'rgba(255,255,255,0.03)';
+    let x = 0;
+    const rand = mulberry32(7);
+    while(x < W){
+      const w = 40 + rand()*70;
+      const h = 60 + rand()*260;
+      ctx.fillRect(x, baseY + (300 - h), w, h);
+      // windows
+      ctx.fillStyle = 'rgba(198,161,91,0.35)';
+      for(let wy = baseY + (300-h) + 14; wy < baseY + 290; wy += 22){
+        for(let wx = x + 8; wx < x + w - 8; wx += 16){
+          if(rand() > 0.5) ctx.fillRect(wx, wy, 6, 8);
+        }
+      }
+      ctx.fillStyle = 'rgba(255,255,255,0.03)';
+      x += w + 6;
+    }
+  }
+
+  function mulberry32(seed){
+    return function(){
+      seed |= 0; seed = seed + 0x6D2B79F5 | 0;
+      let t = Math.imul(seed ^ seed >>> 15, 1 | seed);
+      t = t + Math.imul(t ^ t >>> 7, 61 | t) ^ t;
+      return ((t ^ t >>> 14) >>> 0) / 4294967296;
+    };
+  }
+
+  function wrapText(ctx, text, x, y, maxWidth, lineHeight){
+    const words = text.split(' ');
+    let line = '';
+    let curY = y;
+    for(let n = 0; n < words.length; n++){
+      const testLine = line + words[n] + ' ';
+      if(ctx.measureText(testLine).width > maxWidth && n > 0){
+        ctx.fillText(line, x, curY);
+        line = words[n] + ' ';
+        curY += lineHeight;
+      } else {
+        line = testLine;
+      }
+    }
+    ctx.fillText(line, x, curY);
+  }
+
+  document.getElementById('download-btn').addEventListener('click', () => {
+    const canvas = document.getElementById('card-canvas');
+    try{
+      canvas.toBlob(function(blob){
+        if(!blob){ throw new Error('blob failed'); }
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.download = 'mera-' + chosenYear + '.png';
+        link.href = url;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
+        setTimeout(() => URL.revokeObjectURL(url), 4000);
+      }, 'image/png');
+    } catch(err){
+      alert('Download abhi block ho raha hai (logo cross-domain se aa raha hai). "Naye Tab Mein Kholein" try karein, ya logo image ko apni website ke usi folder mein save kar ke local path use karein — phir download bhi kaam karega.');
+    }
+  });
+
+  document.getElementById('open-btn').addEventListener('click', () => {
+    const canvas = document.getElementById('card-canvas');
+    try{
+      const dataUrl = canvas.toDataURL('image/png');
+      const w = window.open();
+      if(w){
+        w.document.write('<title>Aap ka ' + chosenYear + '</title><body style="margin:0;background:#0d0b07;display:flex;align-items:center;justify-content:center;min-height:100vh;"><img src="' + dataUrl + '" style="max-width:100%;height:auto;" alt="Card"></body>');
+      } else {
+        alert('Popup blocked. Browser settings mein popups allow karein.');
+      }
+    } catch(err){
+      alert('Logo cross-domain se aa raha hai isliye ye tasveer abhi save nahi ho pa rahi. Website live karte waqt logo image ko isi server pe rakh dena — phir ye masla khud hi theek ho jayega.');
+    }
+  });
+</script>
+
+</body>
+</html>
