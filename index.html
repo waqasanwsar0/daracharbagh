@@ -188,7 +188,7 @@
     to{ opacity:1; transform: scale(1) translateY(0); }
   }
 
-  .choice-btn.selected{ animation: choicePulse 0.35s ease; border-color: var(--blue); background:#e2edff; }
+  .choice-btn.selected{ animation: choicePulse 0.35s ease; border-color: var(--navy); background:#1c9bd8; }
   @keyframes choicePulse{
     0%{ transform: scale(1); }
     45%{ transform: scale(0.94); }
@@ -201,30 +201,35 @@
     display:flex;
     gap:12px;
     margin-top: 28px;
+    justify-content: center;
   }
   .choice-btn{
-    flex:1;
+    flex: 0 1 190px;
     background-color: #26AEEE;
-    border: 1px solid var(--panel-line);
-    color: var(--navy);
+    border: 2px solid var(--navy);
+    color: #ffffff;
     font-family:'Fraunces', serif;
-    font-size: 26px;
-    padding: 20px 8px;
+    font-size: 20px;
+    padding: 13px 6px;
     cursor:pointer;
-    transition: border-color 0.25s ease, background 0.25s ease;
+    box-shadow: 0 4px 14px -5px rgba(11,42,91,0.45);
+    transition: border-color 0.25s ease, background 0.25s ease, transform 0.2s ease, box-shadow 0.2s ease;
   }
   .choice-btn span{
     display:block;
     font-family:'Manrope', sans-serif;
-    font-size: 11px;
-    color: var(--muted);
-    margin-top:6px;
-    letter-spacing:0.03em;
+    font-weight:600;
+    font-size: 10px;
+    color: rgba(255,255,255,0.85);
+    margin-top:5px;
+    letter-spacing:0.08em;
   }
   .choice-btn:hover, .choice-btn:focus-visible{
-    border-color: var(--blue);
-    background: #e2edff;
+    border-color: var(--navy);
+    background: #1c9bd8;
     outline: none;
+    transform: translateY(-2px);
+    box-shadow: 0 10px 20px -6px rgba(11,42,91,0.5);
   }
 
   .field-wrap{ margin-top: 28px; }
