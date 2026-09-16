@@ -576,6 +576,11 @@
     ctx.fillStyle = textColor;
     ctx.font = '600 76px Fraunces, serif';
     wrapText(ctx, userName, 56, H - 175, W - 112, 84);
+
+    // tagline below the name
+    ctx.fillStyle = bgReady ? '#eaf3ff' : '#0b2a5b';
+    ctx.font = '500 28px Manrope, sans-serif';
+    ctx.fillText('Apka future Address Dara Chahar Bagh', 56, H - 90);
   }
 
   function drawSkyline(ctx, W, H){
